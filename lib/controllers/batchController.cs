@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace HWAPP.Controllers
 {
-    [Route("api/batches")]
+    [Route("api/v1/batches")]
     public class BatchContoller: Controller
     {
         public ILogger Logger {get;}

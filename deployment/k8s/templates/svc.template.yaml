@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ${APP_NAME}-${WIIVV_ENVIRONMENT}-svc
+  labels:
+    name: ${APP_NAME}
+    environment: ${WIIVV_ENVIRONMENT}
+spec:
+  ports:
+    - port: 80
+      targetPort: "http-server"
+  selector:
+    name: ${APP_NAME}
+    environment: ${WIIVV_ENVIRONMENT}

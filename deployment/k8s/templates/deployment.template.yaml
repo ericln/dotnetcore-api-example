@@ -18,10 +18,6 @@ spec:
       containers:
         - name: ${APP_NAME}
           image: ${REPO_URL}/wiivv-${APP_NAME}:${WIIVV_IMAGE_TAG}
-          resources:
-            requests:
-              cpu: 100m
-              memory: 100Mi
           ports:
             - containerPort: 80
               name: http-server

@@ -5,8 +5,6 @@ machine:
     - sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
     - sudo apt-get update
     - sudo apt-get install dotnet-dev-1.0.0-preview2-003121
-  node:
-    version: 6.0.0
   environment:
     REPO_URL: '037346530273.dkr.ecr.us-west-2.amazonaws.com'
     APP_NAME: 'ms-netcore-batch'
@@ -22,10 +20,10 @@ dependencies:
     - cp ms-deployment/deployment/k8s/* deployment/k8s
     - ./deployment/k8s/ensure-k8s-installed.sh
     - envsubst < ./deployment/k8s/kubectl_config_template > ~/.kube/config
-    - sudo pip install docker-compose
-
+    
 test:
   override:
+    - dotnet restore
     - dotnet publish
     - docker build -t wiivv-$APP_NAME .
 

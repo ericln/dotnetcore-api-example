@@ -24,6 +24,7 @@ test:
   override:
     - docker build -t wiivv-$APP_NAME .
 
+deployment:
   dev:
     branch: develop
     commands:

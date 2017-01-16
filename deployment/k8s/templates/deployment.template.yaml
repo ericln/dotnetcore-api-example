@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}-${WIIVV_ENVIRONMENT}-deployment
+  labels:
+    name: ${APP_NAME}
+    environment: ${WIIVV_ENVIRONMENT}
+spec:
+  strategy:
+    type: RollingUpdate
+  replicas: ${REPLICAS_COUNT}
+  template:
+    metadata:
+      labels:
+        name: ${APP_NAME}
+        environment: ${WIIVV_ENVIRONMENT}
+    spec:
+      containers:
+        - name: ${APP_NAME}
+          image: ${REPO_URL}/wiivv-${APP_NAME}:${WIIVV_IMAGE_TAG}
+          ports:
+            - containerPort: 80
+              name: http-server
+          env:
+            - name: NODE_ENV
+              value: ${WIIVV_ENVIRONMENT}
